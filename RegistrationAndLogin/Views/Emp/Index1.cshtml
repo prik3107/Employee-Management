@@ -1,0 +1,62 @@
+﻿@model IEnumerable<RegistrationAndLogin.Models.EMP>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Employee Details</title>
+</head>
+
+<body>
+    <h2 style="background-color: #ADD8E6">Employee Details</h2>
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("Logout", "User", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+        }
+    }
+    <table border="2">
+        <tr>
+            <th style="background-color: #d3d3d3">
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th style="background-color: #d3d3d3">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th style="background-color: #d3d3d3">
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </th>
+            <th style="background-color: #d3d3d3">
+                @Html.DisplayNameFor(model => model.Task)
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Task)
+                </td>
+                <td>
+                    @Html.ActionLink("Add", "Create", new { id = item.Id }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

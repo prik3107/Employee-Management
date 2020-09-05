@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+Welcome @HttpContext.Current.User.Identity.Name
+
+<br>
+@if (Request.IsAuthenticated)
+{
+
+    using (Html.BeginForm("Create", "Emp", FormMethod.Post, new { id = "manageEmp" }))
+    {
+        <a href="javascript:document.getElementById('manageEmp').submit()">Create User Profile</a>
+    }
+
+    using (Html.BeginForm("Index1", "Emp", FormMethod.Post, new { id = "manageEmp1" }))
+    {
+        <a href="javascript:document.getElementById('manageEmp1').submit()">Edit User Profile</a>
+    }
+
+    using (Html.BeginForm("Logout", "User", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+    }
+}
